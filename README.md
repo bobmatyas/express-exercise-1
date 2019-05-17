@@ -1,4 +1,4 @@
-# GRAND CIRCUS EXPRESS EXERCISE 1
+l# GRAND CIRCUS EXPRESS EXERCISE 1
 
 Task: Continuing from Express Lab 1, add a front-end to display the shopping cart items from your back-end API.
 
