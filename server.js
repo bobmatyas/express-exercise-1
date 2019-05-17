@@ -9,8 +9,9 @@ const items = require('./cartItems');
 app.use(express.json());
 
 
-// use and setup students route
+// use and setup items route
 app.use("/", items);
+
 
 // define the port
 const port = 3000;
