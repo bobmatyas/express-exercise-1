@@ -3,25 +3,23 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cart</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <title>Shoppin Cart App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-  <section class="section">
+    <nav class="navbar navbar-light bg-light sticky-top">
+      <a class="navbar-brand" href="#/">
+        Shopping Site
+      </a>
+    </nav>
+    
     <div class="container">
-      <h1 class="title">
-        My Shopping Site
-      </h1>
-      <p class="subtitle">
-        A simple site full stack site...
-      </p>
+      <item-list></item-list>
     </div>
-  </section>
 
   <script src="https://code.angularjs.org/1.7.8/angular.js"></script>
-
   <script src="/app.module.js"></script>
-
+  <script src="/cart.service.js"></script>
+  <script src="components/itemList.js"></script>
   </body>
 </html>
