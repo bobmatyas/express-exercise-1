@@ -1,0 +1,22 @@
+{
+  "name": "express-exercise-1",
+  "version": "1.0.0",
+  "description": "Task: Continuing from Express Lab 1, add a front-end to display the shopping cart items from your back-end API.",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bobmatyas/express-exercise-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bobmatyas/express-exercise-1/issues"
+  },
+  "homepage": "https://github.com/bobmatyas/express-exercise-1#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
