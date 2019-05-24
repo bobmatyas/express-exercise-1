@@ -47,8 +47,6 @@ cart.post("/cart-items", (req, res) => {
 // UPDATE AN ITEM IN THE DATABASE
 
 cart.put("/cart-items/:id", (req, res) => {
-  console.log(`Updating item: ${req.params.id}`);
-  console.log(req.body);
   let data = req.body;
   pool.query(
       "UPDATE ShoppingCart SET quantity=$2::smallint WHERE id=$1::int", 
@@ -65,7 +63,6 @@ cart.put("/cart-items/:id", (req, res) => {
 // DELETE AN ITEM FROM THE DATABASE
 
 cart.delete("/cart-items/:id", (req, res) => {
-  console.log(`Deleting item: ${req.params.id}`);
   let data = req.body;
   pool.query(
     "DELETE FROM ShoppingCart WHERE id=$1::int", 

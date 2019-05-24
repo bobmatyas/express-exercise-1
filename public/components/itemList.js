@@ -99,7 +99,7 @@ angular
          </tr>
         </thead>
        <tbody>         
-        <tr ng-repeat="cart in $ctrl.cartItems track by (cart.id * 993)">
+        <tr ng-repeat="cart in $ctrl.cartItems track by $index">
            <th scope="row">{{ cart.id   }} </th>
            <td class="text-left"> {{ cart.product }} </td>
            <td class="text-left"> {{ cart.price | currency }} </td>
@@ -115,10 +115,10 @@ angular
 
       <h3 class="mt-5 pt-5">Add An Item</h2>
       <hr>
-      <form class="mb-5 pb-5" ng-submit="$ctrl.addItem($ctrl.add_product, $ctrl.add_price, $ctrl.add_quantity)" required>
+      <form class="mb-5 pb-5" ng-submit="$ctrl.addItem($ctrl.add_product, $ctrl.add_price, $ctrl.add_quantity)" name="addItemForm" id="addItemForm">
         <div class="form-group">
           <label for="addProduct">Product</label>
-          <input type="text" class="form-control" id="addProduct class="form-control" type="text" ng-model="$ctrl.add_product" placeholder="Enter the product to add" required>
+          <input type="text" class="form-control" id="addProduct" class="form-control" type="text" ng-model="$ctrl.add_product" placeholder="Enter the product to add" required>
         </div>
 
         <div class="form-group">
