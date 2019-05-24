@@ -53,7 +53,6 @@ cart.get("/cart-items", (req, res) => {
 
 cart.post("/cart-items", (req, res) => {
   let data = req.body;
-  console.log(data);
   pool.query(
       "INSERT INTO ShoppingCart (product, price, quantity) values($1::text, $2::float, $3::smallint)", 
       [data.product, data.price, data.quantity]
@@ -66,18 +65,53 @@ cart.post("/cart-items", (req, res) => {
 
 
 
+// // log the _ID_ URL param and the body to the console.
+// cart.put("/cart-items/:id", (req, res) => {
+//   console.log(`Updating item: ${req.params.id}`);
+//   console.log(req.body);
+//   res.send("Updating an item...");
+// });
+
 // log the _ID_ URL param and the body to the console.
 cart.put("/cart-items/:id", (req, res) => {
   console.log(`Updating item: ${req.params.id}`);
   console.log(req.body);
-  res.send("Updating an item...");
+  let data = req.body;
+  pool.query(
+      "UPDATE ShoppingCart SET product=$2::text, price=$3::float, quantity=$4::smallint WHERE id=$1::int", 
+      [req.params.id, data.product, data.price, data.quantity]
+  )
+  .then( () => {
+      res.status(201); // Created
+      res.send('Successfully updated an item!');
+  })
+
 });
 
-// log the _ID_ URL param to the console.
+
+// // log the _ID_ URL param to the console.
+// cart.delete("/cart-items/:id", (req, res) => {
+//   console.log(`Deleting item: ${req.params.id}`);
+//   res.send("Deleting an item...");
+// });
+
+
+// DELETE AN ITEM FROM THE DATABASE
+
 cart.delete("/cart-items/:id", (req, res) => {
   console.log(`Deleting item: ${req.params.id}`);
-  res.send("Deleting an item...");
+  let data = req.body;
+  pool.query(
+    "DELETE FROM ShoppingCart WHERE id=$1::int", 
+    [req.params.id]
+  )
+  .then( () => {
+    res.status(201); // Created
+    res.send('Successfully deleted an item!');
+  })
 });
+
+
 
 // can export one thing as object
 module.exports = cart;
