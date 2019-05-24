@@ -33,15 +33,26 @@ function CartService($http, $q) {
   
   // this adds an item to the cart based on the add item form
 
-  service.addItem = (newItem) => {
+  service.addItem = (item) => {
     return $http({
       url: "/cart-items",
       method: "POST",
-      data: newItem
+      data: item
     }).then((response) => {
       return response.data;
     });
   }
+
+  service.updateItem = (item, id) => {
+    return $http({
+      url: "/cart-items/" + id,
+      method: "PUT",
+      data: item
+    }).then((response) => {
+      return response.data;
+    });
+  }
+
 
 }
 

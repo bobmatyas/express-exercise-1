@@ -21,7 +21,7 @@ const pool = new pg.Pool({
 // DISPLAY ITEMS IN DATABASE
 
 cart.get("/cart-items", (req, res) => {
-  pool.query("SELECT * FROM ShoppingCart;")
+  pool.query("SELECT * FROM ShoppingCart ORDER BY id;")
   .then((result) => {
     res.send(result.rows);
   })
@@ -51,8 +51,8 @@ cart.put("/cart-items/:id", (req, res) => {
   console.log(req.body);
   let data = req.body;
   pool.query(
-      "UPDATE ShoppingCart SET product=$2::text, price=$3::float, quantity=$4::smallint WHERE id=$1::int", 
-      [req.params.id, data.product, data.price, data.quantity]
+      "UPDATE ShoppingCart SET quantity=$2::smallint WHERE id=$1::int", 
+      [req.params.id, data.quantity]
   )
   .then( () => {
       res.status(201); // Created
