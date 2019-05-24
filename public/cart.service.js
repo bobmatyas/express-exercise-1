@@ -43,6 +43,8 @@ function CartService($http, $q) {
     });
   }
 
+  // this updates the item quantity based on the user updating in the cart view
+
   service.updateItem = (item, id) => {
     return $http({
       url: "/cart-items/" + id,

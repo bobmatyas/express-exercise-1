@@ -98,11 +98,11 @@ angular
             <th scope="col" class="text-right">Remove</th>
          </tr>
         </thead>
-       <tbody>
-         <tr ng-repeat="cart in $ctrl.cartItems track by (cart.id * 993)">
+       <tbody>         
+        <tr ng-repeat="cart in $ctrl.cartItems track by (cart.id * 993)">
            <th scope="row">{{ cart.id   }} </th>
            <td class="text-left"> {{ cart.product }} </td>
-           <td class="text-left"> {{ cart.price }} </td>
+           <td class="text-left"> {{ cart.price | currency }} </td>
            <td class="text-left"> <input type="number" value="{{ cart.quantity }}" ng-model="qty" style="width: 100px;" class="form-control form-control-sm"> <br><button ng-click="$ctrl.updateItem(qty, cart.id)"  class="btn btn-outline-primary btn-sm ">Update Quantity</button></td>
            <td class="text-left"> 
               <button type="button" class="close" aria-label="Delete" ng-click="$ctrl.removeItem(cart.id)">
@@ -115,25 +115,25 @@ angular
 
       <h3 class="mt-5 pt-5">Add An Item</h2>
       <hr>
-      <form>
+      <form class="mb-5 pb-5" ng-submit="$ctrl.addItem($ctrl.add_product, $ctrl.add_price, $ctrl.add_quantity)" required>
         <div class="form-group">
           <label for="addProduct">Product</label>
-          <input type="text" class="form-control" id="addProduct class="form-control" type="text" ng-model="$ctrl.add_product" placeholder="Enter the product to add">
+          <input type="text" class="form-control" id="addProduct class="form-control" type="text" ng-model="$ctrl.add_product" placeholder="Enter the product to add" required>
         </div>
 
         <div class="form-group">
           <label for="addPrice">Price</label>
-          <input type="number" step="any" ng-model="$ctrl.add_price" class="form-control" id="addPrice" placeholder="Enter the product price">
+          <input type="number" step="any" ng-model="$ctrl.add_price" class="form-control" id="addPrice" placeholder="Enter the product price" required>
           <small id="priceHelp" class="form-text text-muted">This must be a number.</small>
         </div>
 
         <div class="form-group">
           <label for="addQuantity">Quantity</label>
-          <input type="number" ng-model="$ctrl.add_quantity" class="form-control" id="addQuantity" placeholder="Enter the quantity">
+          <input type="number" ng-model="$ctrl.add_quantity" class="form-control" id="addQuantity" placeholder="Enter the quantity" required>
           <small id="quantityHelp" class="form-text text-muted">This must be a number.</small>
         </div>
 
-        <button class="btn btn-primary" type="submit" ng-click="$ctrl.addItem($ctrl.add_product, $ctrl.add_price, $ctrl.add_quantity)">Add an Item</button>
+        <button class="btn btn-primary" type="submit" >Add an Item</button>
       </form>
   `
 });
