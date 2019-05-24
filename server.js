@@ -14,6 +14,19 @@ const items = require('./cartItems');
 app.use(express.json());
 
 
+const pg = require("pg");
+
+const pool = new pg.Pool({
+  user: "postgres",
+  password: "M4gQ39Gj3BJg_m6KEb7ZTe7eA88JhkaX",
+  host: "localhost",
+  port: 5432,
+  database: "postgres",
+  ssl: false
+});
+
+
+
 // // use and setup items route
 app.use("/", items);
 

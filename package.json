@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/bobmatyas/express-exercise-1#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "pg": "^7.11.0"
   }
 }

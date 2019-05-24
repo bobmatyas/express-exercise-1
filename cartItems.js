@@ -6,22 +6,65 @@ const cart = express.Router();
 
 const cartItems = require('./cartData');
 
+const pg = require("pg");
 
-//return JSON array of items.
+const pool = new pg.Pool({
+  user: "postgres",
+  password: "M4gQ39Gj3BJg_m6KEb7ZTe7eA88JhkaX",
+  host: "localhost",
+  port: 5432,
+  database: "postgres",
+  ssl: false
+});
+
+
+// //return JSON array of items.
+// cart.get("/cart-items", (req, res) => {
+//   res.setHeader("Content-Type", "application/json");
+//   res.send(JSON.stringify(cartItems));
+// });
+
+
 cart.get("/cart-items", (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  res.send(JSON.stringify(cartItems));
+  pool.query("SELECT * FROM ShoppingCart;")
+  .then((result) => {
+    res.send(result.rows);
+  })
 });
 
+// // log the body to the console.
+// cart.post("/cart-items", (req, res) => {
+//   //log the body to the console
+//   console.log(req.body);
+//   res.send("Adding an item...");
+//   // cartItems.push(req.body);
+//   // console.log(cartItems);
+// });
 
-// log the body to the console.
+
+// cart.post("/cart-items", (req, res) => {
+//   //log the body to the console
+//   console.log(req.body);
+//   res.send("Adding an item...");
+//   // cartItems.push(req.body);
+//   // console.log(cartItems);
+// });
+
+
 cart.post("/cart-items", (req, res) => {
-  //log the body to the console
-  console.log(req.body);
-  res.send("Adding an item...");
-  // cartItems.push(req.body);
-  // console.log(cartItems);
+  let data = req.body;
+  console.log(data);
+  pool.query(
+      "INSERT INTO ShoppingCart (product, price, quantity) values($1::text, $2::float, $3::smallint)", 
+      [data.product, data.price, data.quantity]
+  )
+  .then( () => {
+      res.status(201); // Created
+      res.send('Successfully added an item!');
+  })
 });
+
+
 
 // log the _ID_ URL param and the body to the console.
 cart.put("/cart-items/:id", (req, res) => {
