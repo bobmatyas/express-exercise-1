@@ -13,7 +13,7 @@ const pool = new pg.Pool({
   password: "M4gQ39Gj3BJg_m6KEb7ZTe7eA88JhkaX",
   host: "localhost",
   port: 5432,
-  database: "postgres",
+  database: "ExpressShopDB",
   ssl: false
 });
 
@@ -24,6 +24,9 @@ cart.get("/cart-items", (req, res) => {
   pool.query("SELECT * FROM ShoppingCart ORDER BY id;")
   .then((result) => {
     res.send(result.rows);
+  })
+  .catch( (err) => {
+    console.log('error');
   })
 });
 
@@ -39,6 +42,9 @@ cart.post("/cart-items", (req, res) => {
   .then( () => {
       res.status(201); // Created
       res.send('Successfully added an item!');
+  })
+  .catch( (err) => {
+    console.log('error');
   })
 });
 
@@ -56,7 +62,9 @@ cart.put("/cart-items/:id", (req, res) => {
       res.status(201); // Created
       res.send('Successfully updated an item!');
   })
-
+  .catch( (err) => {
+    console.log('error');
+  })
 });
 
 
@@ -71,6 +79,9 @@ cart.delete("/cart-items/:id", (req, res) => {
   .then( () => {
     res.status(201); // Created
     res.send('Successfully deleted an item!');
+  })
+  .catch( (err) => {
+    console.log('error');
   })
 });
 
